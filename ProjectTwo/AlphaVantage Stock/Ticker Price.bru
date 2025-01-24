@@ -1,0 +1,17 @@
+meta {
+  name: Ticker Price
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=U3C581VINP17X9OQ
+  body: none
+  auth: none
+}
+
+params:query {
+  function: GLOBAL_QUOTE
+  symbol: IBM
+  apikey: U3C581VINP17X9OQ
+}
