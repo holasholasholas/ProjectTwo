@@ -3,17 +3,18 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router';
 
 import './App.css'
-import SingleTick from '../components/singleTick';
+import SingleTick from '../components/SingleTick';
+import HomePage from '../pages/homePage';
 
 function App() {
   
 
   return (
     <>
-    test
+    
     <Router>
       <Routes>
-        {/* <Route path="/main" element={<HomePage />}  /> */}
+        <Route path="/" element={<HomePage />}  />
         <Route path="/search" element={<SingleTick />} />
         {/* <Route path="/watchlist" element={<Watchlist />} /> */}
       </Routes>
