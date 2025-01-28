@@ -24,7 +24,7 @@ const SingleTick = () => {
       } else {
         throw new Error('Invalid request');
       }
-    } catch (error) {
+    } catch {
       setError('Fetching failed, try again!');
     } finally {
       setLoading(false);
@@ -61,7 +61,7 @@ const SingleTick = () => {
           <p>Open: {stockData["02. open"]}</p>
           <p>Change: {stockData["09. change"]}</p>
           <p>Previous Close: {stockData["08. previous close"]}</p>
-          <p>Change Percent:{stockData["10. change percent"].Math.round()} </p>
+          <p>Change Percent:{Math.round(stockData["10. change percent"])} </p>
           <p>High: {stockData["03. high"]} </p>
           <p>Low: {stockData["04. low"]}</p>
           <p>Volume: {stockData["06. volume"]}</p>
