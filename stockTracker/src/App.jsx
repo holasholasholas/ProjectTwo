@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router';
 import './App.css'
 import SingleTick from '../components/SingleTick';
 import HomePage from '../pages/homePage';
+import FetchNews from '../components/fetchNews';
 
 function App() {
   

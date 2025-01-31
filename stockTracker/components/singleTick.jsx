@@ -1,4 +1,5 @@
 import { useState } from "react";
+import FetchNews from "./fetchNews";
 
 const SingleTick = () => {
   const [ticker, setTicker] = useState('');
@@ -61,11 +62,12 @@ const SingleTick = () => {
           <p>Open: {stockData["02. open"]}</p>
           <p>Change: {stockData["09. change"]}</p>
           <p>Previous Close: {stockData["08. previous close"]}</p>
-          <p>Change Percent:{Math.round(stockData["10. change percent"])} </p>
+          <p>Change Percent:{stockData["10. change percent"]} </p>
           <p>High: {stockData["03. high"]} </p>
           <p>Low: {stockData["04. low"]}</p>
           <p>Volume: {stockData["06. volume"]}</p>
           <p>Last Trading Day: {stockData["07. latest trading day"]}</p>
+          <FetchNews ticker={ticker} />
         </div>
       )}
     </div>
