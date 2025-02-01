@@ -1,11 +1,13 @@
 import { useState } from "react";
 import FetchNews from "./fetchNews";
+import Watchlist from "./Watchlist"; 
 
 const SingleTick = () => {
   const [ticker, setTicker] = useState('');
   const [stockData, setStockData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [watchlist, setWatchlist] = useState([]);
 
   async function fetchData() {
     setLoading(true);
@@ -39,8 +41,33 @@ const SingleTick = () => {
     }
   };
 
+  const addToWatchlist = () => {
+    if (stockData) {
+      const newStock = {
+        symbol: stockData["01. symbol"],
+        price: stockData["05. price"],
+        changePercent: stockData["10. change percent"]
+      };
+
+     
+      const isAlreadyInWatchlist = watchlist.some(stock => stock.symbol === newStock.symbol);
+
+      if (!isAlreadyInWatchlist) {
+        setWatchlist([...watchlist, newStock]);
+      } else {
+        alert('This stock is already in your watchlist.');
+      }
+    }
+  };
+
+  const removeFromWatchlist = (index) => {
+    const updatedWatchlist = watchlist.filter((_, i) => i !== index);
+    setWatchlist(updatedWatchlist);
+  };
+
   return (
     <div>
+      <h2>Stock Info</h2>
       <form onSubmit={handleSubmit} className="searchTicker">
         <input
           type="text"
@@ -67,9 +94,12 @@ const SingleTick = () => {
           <p>Low: {stockData["04. low"]}</p>
           <p>Volume: {stockData["06. volume"]}</p>
           <p>Last Trading Day: {stockData["07. latest trading day"]}</p>
+          <button onClick={addToWatchlist}>Add to Watchlist</button>
           <FetchNews ticker={ticker} />
+          <Watchlist watchlist={watchlist} removeFromWatchlist={removeFromWatchlist} />
         </div>
       )}
+
     </div>
   );
 };
