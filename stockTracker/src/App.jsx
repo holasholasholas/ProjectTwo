@@ -1,27 +1,66 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router';
+import { BrowserRouter as Router, Routes, Route } from "react-router";
 
-import './App.css'
-import SingleTick from '../components/SingleTick';
-import HomePage from '../pages/homePage';
-import FetchNews from '../components/fetchNews';
+import "./App.css";
+import SingleTick from "../components/SingleTick";
+import HomePage from "../pages/homePage";
+import Sidebar from "../components/Sidebar";
+
 
 function App() {
   
+  const [watchlist, setWatchlist] = useState([]);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+
+  
+  const addToWatchlist = (stock) => {
+    const isAlreadyInWatchlist = watchlist.some(
+      (item) => item.symbol === stock.symbol
+    );
+    if (!isAlreadyInWatchlist) {
+      setWatchlist([...watchlist, stock]);
+      setIsSidebarVisible(true);
+    } else {
+      alert("This stock is already in your watchlist.");
+    }
+  };
+
+  
+  const removeFromWatchlist = (index) => {
+    const updatedWatchlist = watchlist.filter((_, i) => i !== index);
+    setWatchlist(updatedWatchlist);
+  };
 
   return (
     <>
-    
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />}  />
-        <Route path="/search" element={<SingleTick />} />
-        {/* <Route path="/watchlist" element={<Watchlist />} /> */}
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/search"
+            element={
+              <SingleTick
+                watchlist={watchlist}
+                setWatchlist={setWatchlist}
+                isSidebarVisible={isSidebarVisible}
+                setIsSidebarVisible={setIsSidebarVisible}
+                addToWatchlist={addToWatchlist}
+              />
+            }
+          />
+        </Routes>
+        
+        <Sidebar
+          watchlist={watchlist}
+          isVisible={isSidebarVisible}
+          onClose={() => setIsSidebarVisible(false)}
+          removeFromWatchlist={removeFromWatchlist}
+        />
+      </Router>
     </>
   );
 }
 
-export default App
+export default App;
