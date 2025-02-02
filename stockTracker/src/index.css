@@ -66,3 +66,12 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.stock-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stock-item span {
+  margin-right: 10px;
+}

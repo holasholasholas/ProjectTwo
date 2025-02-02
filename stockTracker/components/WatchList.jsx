@@ -1,3 +1,6 @@
+import React from 'react'
+import '../src/watchList.css';
+
 const Watchlist = ({ watchlist, removeFromWatchlist }) => {
     return (
       <div>
@@ -5,7 +8,7 @@ const Watchlist = ({ watchlist, removeFromWatchlist }) => {
         {watchlist.length > 0 ? (
           <ul>
             {watchlist.map((stock, index) => (
-              <li key={index}>
+              <li key={index} className="stock-item">
                 <span>{stock.symbol}</span>
                 <span>${stock.price}</span>
                 <span>{stock.changePercent}</span>

@@ -4,16 +4,16 @@ const HomePage = () => {
   return (
     <div>
       <h1>Stock Checker</h1>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/search">Single Ticker</Link>
-          </li>
-          <li>
-            <Link to="/watchlist">Watchlist</Link>
-          </li>
-        </ul>
-      </nav>
+      
+        <div>
+          
+            <Link to="/search">Start Search</Link>
+          
+          
+            
+          
+        </div>
+      
     </div>
   );
 };
