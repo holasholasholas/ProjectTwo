@@ -6,6 +6,8 @@ const FetchNews = ({ ticker })  => {
   const [loading, setLoading] = useState(false);  
   const [error, setError] = useState(null); 
 
+  const VITE_NEWS_APIKEY =`${import.meta.env.VITE_NEWS_APIKEY}`
+
 useEffect(() => {
     
     if (ticker) {
@@ -14,7 +16,7 @@ useEffect(() => {
         setError(null);
         try {
           const res = await fetch(
-            `https://api.marketaux.com/v1/news/all?filter_entities=true&limit=3&published_after=2025-01-27T03:26&api_token=0IqXjtXDF4XuAKsC15buTITFvyIUl7t9xsfz5li7&symbols=${ticker}`
+            `https://api.marketaux.com/v1/news/all?filter_entities=true&limit=3&published_after=2025-01-27T03:26&api_token=${VITE_NEWS_APIKEY}&symbols=${ticker}`
           );
 
           if (!res.ok) {

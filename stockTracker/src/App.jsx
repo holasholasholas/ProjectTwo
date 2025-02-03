@@ -15,7 +15,11 @@ function App() {
   
   const [watchlist, setWatchlist] = useState([]);
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [realWatchlist, setRealWatchlist] = useState({});
 
+  const liftState = (data) => {
+    setRealWatchlist(data)
+  } 
   
   const addToWatchlist = (stock) => {
     const isAlreadyInWatchlist = watchlist.some(
@@ -52,12 +56,13 @@ function App() {
                 isSidebarVisible={isSidebarVisible}
                 setIsSidebarVisible={setIsSidebarVisible}
                 addToWatchlist={addToWatchlist}
-              />
-            }
+                liftState={liftState}
+                />
+              }
           />
+              <Route path="/watchlist" element={<Watchlist watchlist={watchlist}/>}></Route>
         </Routes>
         
-        {/*<Route path="/watchlist" element={<Watchlist/>}></Route> */}
 
 
         <Sidebar
