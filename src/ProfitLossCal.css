@@ -1,25 +1,44 @@
 .form-group {
-    margin-bottom: 15px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 300px;
+ }
+
+.form-group label {
+  display: flex;
+  margin: 0 0 5px;
+  color: #333;
+}
+
+.form-group input {
   
- 
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-  }
-  
- 
-  .form-group input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    box-sizing: border-box; 
-  }
+  width: 60%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
 
   .form-group ::placeholder {
-    align-content: center;
+    text-align: center;
   }
+
+  button {
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+   }
+
+   li {
+    list-style-type: none;
+   }

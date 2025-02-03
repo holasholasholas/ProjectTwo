@@ -35,7 +35,7 @@ function App() {
 
   
   const removeFromWatchlist = (index) => {
-    const updatedWatchlist = watchlist.filter((_, i) => i !== index);
+    const updatedWatchlist = watchlist.filter((element, i) => i !== index);
     setWatchlist(updatedWatchlist);
   };
 
@@ -46,7 +46,7 @@ function App() {
         <Routes>
           
           <Route path="/" element={<HomePage />} />
-          <Route path="/calculator" element={<ProfitLossCal/>}/>
+          <Route path="/calculator" watchlist={watchlist} element={<ProfitLossCal/>}/>
           <Route
             path="/search"
             element={

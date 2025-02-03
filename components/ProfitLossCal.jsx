@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../src/ProfitLossCal.css"
 
-const ProfitLossCal = () => {
+const ProfitLossCal = ({watchlist}) => {
 
     const [positions ,SetPositions] = useState([])
     const [formData, SetFormData] = useState({
@@ -10,14 +10,16 @@ const ProfitLossCal = () => {
         sellPrice: "",
         quantity: ""
     });
+    const [pnl,SetPnl] = useState('');
     
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         SetFormData({...formData, [name]: value});
     };
     
+     
     const removePosition = (index) => {
-        SetPositions(positions.filter((_, i) => i !== index));
+        SetPositions(positions.filter((element, i) => i !== index));
       };
 
     const addPosition = (e) => {
@@ -47,7 +49,7 @@ const ProfitLossCal = () => {
     };
       return (
           <>
-        <h1>Profit Loss Calculator</h1>
+        <h1>Profit Loss Tracker</h1>
         <form onSubmit={addPosition}>
             <div className="form-group">
                 

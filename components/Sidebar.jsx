@@ -4,9 +4,7 @@ import "../src/Sidebar.css";
 const Sidebar = ({ watchlist, isVisible, onClose, removeFromWatchlist }) => {
   return (
     <div className={`sidebar ${isVisible ? "visible" : ""}`}>
-      <button onClick={onClose} className="close-button">
-        &times;
-      </button>
+      <button onClick={onClose} className="close-button">test</button>
       <h3>Watchlist</h3>
       <ul>
         {watchlist.map((stock, index) => (
