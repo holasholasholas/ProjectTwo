@@ -42,6 +42,7 @@ function App() {
         <Routes>
           
           <Route path="/" element={<HomePage />} />
+          <Route path="/calculator" element={<ProfitLossCal/>}/>
           <Route
             path="/search"
             element={
@@ -55,8 +56,8 @@ function App() {
             }
           />
         </Routes>
-        {/* <Route path="/calculator" element={<ProfitLossCal/>}></Route>
-        <Route path="/watchlist" element={<Watchlist/>}></Route> */}
+        
+        {/*<Route path="/watchlist" element={<Watchlist/>}></Route> */}
 
 
         <Sidebar

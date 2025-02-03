@@ -1,0 +1,25 @@
+.form-group {
+    margin-bottom: 15px;
+  }
+  
+  /* Labels */
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Input fields */
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+  }
+
+  .form-group ::placeholder {
+    align-content: center;
+  }

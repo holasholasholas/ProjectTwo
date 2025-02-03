@@ -1,8 +1,10 @@
 import { useState } from "react";
 import FetchNews from "./FetchNews";
+import ProfitLossCal from "./ProfitLossCal";
 
 const SingleTick = ({
   addToWatchlist
+  
   
 }) => {
   const [ticker, setTicker] = useState("");
@@ -84,6 +86,7 @@ const SingleTick = ({
           <p>Last Trading Day: {stockData["07. latest trading day"]}</p>
           <button onClick={handleAddToWatchlist}>Add to Watchlist</button>
           <FetchNews ticker={ticker} />
+          
         </div>
       )}
     </div>
