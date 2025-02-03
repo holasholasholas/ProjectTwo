@@ -6,6 +6,9 @@ import "./App.css";
 import SingleTick from "../components/SingleTick";
 import HomePage from "../pages/homePage";
 import Sidebar from "../components/Sidebar";
+import NavBar from "../components/NavBar";
+import ProfitLossCal from "../components/ProfitLossCal";
+import Watchlist from "../components/WatchList";
 
 
 function App() {
@@ -35,6 +38,7 @@ function App() {
   return (
     <>
       <Router>
+    <NavBar />
         <Routes>
           
           <Route path="/" element={<HomePage />} />
@@ -51,7 +55,10 @@ function App() {
             }
           />
         </Routes>
-        
+        {/* <Route path="/calculator" element={<ProfitLossCal/>}></Route>
+        <Route path="/watchlist" element={<Watchlist/>}></Route> */}
+
+
         <Sidebar
           watchlist={watchlist}
           isVisible={isSidebarVisible}

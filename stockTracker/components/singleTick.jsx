@@ -2,7 +2,7 @@ import { useState } from "react";
 import FetchNews from "./FetchNews";
 
 const SingleTick = ({
-  addToWatchlist,
+  addToWatchlist
   
 }) => {
   const [ticker, setTicker] = useState("");
