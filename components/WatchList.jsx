@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 const AIRTABLE_API_KEY = `${import.meta.env.VITE_AIRTABLE_API_KEY}`;
 
-const Watchlist = ({ watchlist }) => {
-  const [savedStocks, setSavedStocks] = useState([]);
+const Watchlist = ({ watchlist, savedStocks,setSavedStocks }) => {
+  
 
   async function fetchAirtable() {
     const url = `https://api.airtable.com/v0/appnbMRdyW6jkWQGB/Table%201`;
@@ -29,6 +29,8 @@ const Watchlist = ({ watchlist }) => {
     }
   }
 
+
+  // syncs with airtable when new info added to watchlist
   useEffect(() => {
     const getData = async () => {
       const airtableData = await fetchAirtable();

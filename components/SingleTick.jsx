@@ -8,14 +8,17 @@ const AIRTABLE_API_KEY = `${import.meta.env.VITE_AIRTABLE_API_KEY }`;
 
 const SingleTick = ({
   addToWatchlist,
-  liftState
-  
+  liftState,
+  savedStocks,
+  setSavedStocks
   
 }) => {
+  
   const [ticker, setTicker] = useState("");
   const [stockData, setStockData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [checkAirtable, setCheckAirtable] = useState([]);
   
   
   async function fetchAirtable(){
@@ -34,14 +37,20 @@ const SingleTick = ({
   
       const json = await response.json();
       console.log(json);
+      const mapped = json.records.map((record) => record.fields)
+      setSavedStocks(mapped)
       return json;
     } catch (error) {
       console.error(error.message);
-    }
+}
   }
   
   async function postAirtable(data){
     const url = `https://api.airtable.com/v0/appnbMRdyW6jkWQGB/Table%201`;
+    console.log(data)
+    console.log(savedStocks)
+    const isSaved = savedStocks.some((stock) => stock.symbol === data.fields.symbol)
+    if (!isSaved){
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -60,7 +69,10 @@ const SingleTick = ({
       return json;
     } catch (error) {
       console.error(error.message);
-    }
+}} else {
+  console.log("Ticker is already saved!")
+  return null 
+}
   }
   
   
@@ -78,11 +90,14 @@ const SingleTick = ({
       }
 
       const data = await res.json();
+      console.log(data)
 
-      if (data["Global Quote"]) {
-        setStockData(data["Global Quote"]);
+      // to check if api returns nothing since missing ticker returns nth from api
+      if (!Object.keys(data["Global Quote"]).length) {
+        setError("Ticker can't be found!");
+        return;
       } else {
-        throw new Error("Invalid request");
+        setStockData(data["Global Quote"]);
       }
     } catch {
       setError("Fetching failed, try again!");
@@ -95,6 +110,7 @@ const SingleTick = ({
     e.preventDefault();
     if (ticker.trim()) {
       fetchData();
+    
     }
   };
 
@@ -113,12 +129,13 @@ const SingleTick = ({
           "changePercent": stockData["10. change percent"]
         }
       }
-  
+      
       addToWatchlist(newStock);
       const realData = fetchAirtable();
 
 
       liftState(realData);
+      
       postAirtable(entry);
     }
   };
