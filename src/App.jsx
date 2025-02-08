@@ -10,9 +10,8 @@ import ProfitLossCal from "../components/ProfitLossCal";
 import Watchlist from "../components/WatchList";
 
 function App() {
-  const [watchlist, setWatchlist] = useState([]);
-  const [savedStocks, setSavedStocks] = useState([]);
-  
+  const [watchlist, setWatchlist] = useState([]); // array of stocks. are they the same?
+  const [savedStocks, setSavedStocks] = useState([]); // array of stock. are they the same?
   const [realWatchlist, setRealWatchlist] = useState({});
 
   const liftState = (data) => {
@@ -23,17 +22,20 @@ function App() {
     const isAlreadyInWatchlist = watchlist.some(  // Check if the stock is already in the watchlist
       (item) => item.symbol === stock.symbol
     );
-    if (!isAlreadyInWatchlist) {
-      setWatchlist([...watchlist, stock]);
-    } else {
+
+    if (isAlreadyInWatchlist) {
       alert("This stock is already in your watchlist.");
+      return false
+    } else {
+      setWatchlist([...watchlist, stock]);
+      return true
     }
   };
 
-  const removeFromWatchlist = (index) => {
-    const updatedWatchlist = watchlist.filter((element, i) => i !== index);
-    setWatchlist(updatedWatchlist);
-  };
+  // const removeFromWatchlist = (index) => {
+  //   const updatedWatchlist = watchlist.filter((element, i) => i !== index);
+  //   setWatchlist(updatedWatchlist);
+  // };
 
   return (
     <>

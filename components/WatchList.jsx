@@ -34,16 +34,35 @@ const Watchlist = ({ watchlist, savedStocks,setSavedStocks }) => {
   useEffect(() => {
     const getData = async () => {
       const airtableData = await fetchAirtable();
-
-      setSavedStocks(airtableData.records);
+      console.log(airtableData.records) 
+      // airtable.records is an array of records( a recipe of an object)
+      // convert this to an array of stocks( another recipe of an object)
+      const stocks = airtableData.records.map( record => record.fields);
+      setSavedStocks(stocks); // this shape
     };
     getData();
   }, []);
 
+
+// [ {}, {}, {}] of savedStocks
+// what is th shape of stock
+// {} what aee the keys of him what is the type of the values
+// there is a mismatch
+// map is looping through each stock
+// taking stock and passing it as props to <li/>
+
+
+
+// map, filter and reduce and classic for loop
+// const Stock = {
+//   fields: { id: 'aapl', symbol: 'blah', changePercent: 69}
+// }
+
+ 
   return (
     <>
-      {savedStocks.map((items) => (
-        <li key={items.id}> {items.fields.symbol} {items.fields.price} {items.fields.changePercent}</li>
+      {savedStocks.map((stock) => (
+        <li key={stock.id}> {stock.symbol} {stock.price} {stock.changePercent}</li>
       ))}
     </>
   );
