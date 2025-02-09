@@ -13,41 +13,8 @@ function App() {
   const [watchlist, setWatchlist] = useState([]); // array of stocks. are they the same?
   const [savedStocks, setSavedStocks] = useState([]); // array of stock. are they the same?
   const [realWatchlist, setRealWatchlist] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  async function fetchData() {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const res = await fetch(
-        `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${STOCK_API_KEY}`
-      );
-
-      if (!res.ok) {
-        throw new Error("Unable to fetch");
-      }
-
-      const data = await res.json();
-      console.log(data);
-
-      // to check if api returns nothing since missing ticker returns nth from api
-      if (!Object.keys(data["Global Quote"]).length) {
-        setError("Ticker can't be found!");
-        return;
-      } else {
-        setStockData(data["Global Quote"]);
-      }
-    } catch {
-      setError("Fetching failed, try again!");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-
-
+  
   const liftState = (data) => {
     setRealWatchlist(data);
   };
@@ -92,7 +59,6 @@ function App() {
                 setWatchlist={setWatchlist}
                 addToWatchlist={addToWatchlist}
                 liftState={liftState}
-                
               />
             }
           />
