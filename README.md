@@ -1,12 +1,16 @@
-# Project: Stock Tracker
+# Project: Stock Portfolio Tracker App
 
-# Stock Portfolio Tracker App
-
-## Overview
+## Description
 
 The **Stock Portfolio Tracker App** is a React-based web application designed to help users track their stock investments, calculate profit and loss, and manage a watchlist of stocks. The app integrates with the Alpha Vantage API to fetch real-time stock data and allows users to add stocks to their watchlist, view stock details, and calculate profit/loss for their investments.
 
 ---
+
+## User Story
+
+- As a user, I want to search for prices of stocks in the US
+- As a user, I want to be able to save them onto a watchlist
+- As a user, I need to calculate and check my P&L based on latest prices 
 
 ## Features
 
