@@ -42,3 +42,51 @@
    li {
     list-style-type: none;
    }
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+
+
+th {
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+
+
+td {
+  padding: 12px;
+  text-align: left;
+  color: #cccccc;
+}
+
+
+.profit {
+  color: green;
+  font-weight: bold;
+}
+
+.loss {
+  color: red;
+  font-weight: bold;
+}
+
+
+h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #333;
+}
