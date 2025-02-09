@@ -6,18 +6,15 @@ const STOCK_API_KEY = `${import.meta.env.VITE_ALPHA_VANTAGE_APIKEY}`;
 const AIRTABLE_API_KEY = `${import.meta.env.VITE_AIRTABLE_API_KEY}`;
 
 const SingleTick = ({
-  fetchData,
   addToWatchlist,
   liftState,
   savedStocks,
   setSavedStocks,
-  loading,
-  error
-  
 }) => {
   const [ticker, setTicker] = useState("");
   const [stockData, setStockData] = useState(null);
-  
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   
 
   async function fetchAirtable() {
@@ -115,7 +112,35 @@ const SingleTick = ({
     }
   };
 
-  
+  async function fetchData() {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch(
+        `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${STOCK_API_KEY}`
+      );
+
+      if (!res.ok) {
+        throw new Error("Unable to fetch");
+      }
+
+      const data = await res.json();
+      console.log(data);
+
+      // to check if api returns nothing since missing ticker returns nth from api
+      if (!Object.keys(data["Global Quote"]).length) {
+        setError("Ticker can't be found!");
+        return;
+      } else {
+        setStockData(data["Global Quote"]);
+      }
+    } catch {
+      setError("Fetching failed, try again!");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();

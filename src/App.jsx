@@ -92,10 +92,7 @@ function App() {
                 setWatchlist={setWatchlist}
                 addToWatchlist={addToWatchlist}
                 liftState={liftState}
-                fetchData={fetchData}
-                loading={loading}
-                error={error}
-               
+                
               />
             }
           />
