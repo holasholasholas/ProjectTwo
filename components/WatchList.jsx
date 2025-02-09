@@ -46,7 +46,7 @@ const Watchlist = ({ watchlist, savedStocks,setSavedStocks }) => {
 
 // [ {}, {}, {}] of savedStocks
 // what is th shape of stock
-// {} what aee the keys of him what is the type of the values
+// {} what are the keys of him what is the type of the values
 // there is a mismatch
 // map is looping through each stock
 // taking stock and passing it as props to <li/>

@@ -24,8 +24,9 @@ const ProfitLossCal = () => {
     return pnl.toFixed(2);
   };
 
-  const addPosition = (e) => {
+  const calculatePosition = (e) => {
     e.preventDefault();
+    fetchData();
 
     if (!formData.ticker || !formData.buyPrice || !formData.sellPrice || !formData.quantity) {
       alert("Please fill in all fields!");
@@ -52,7 +53,8 @@ const ProfitLossCal = () => {
   return (
     <>
       <h1>Profit Loss Tracker</h1>
-      <form onSubmit={addPosition}>
+      <p>Enter your position details and calculate your P&L</p>
+      <form onSubmit={calculatePosition}>
         <div className="form-group">
 
           <input
@@ -68,13 +70,6 @@ const ProfitLossCal = () => {
             value={formData.buyPrice}
             onChange={handleInputChange}
             placeholder="Buy Price"
-          />
-          <input
-            type="number"
-            name="sellPrice"
-            value={formData.sellPrice}
-            onChange={handleInputChange}
-            placeholder="Sell Price"
           />
           <input
             type="number"
