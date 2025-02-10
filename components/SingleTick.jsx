@@ -18,7 +18,7 @@ const SingleTick = ({
   
 
   async function fetchAirtable() {
-    const url = `https://api.airtable.com/v0/appnbMRdyW6jkWQGB/Table%201`;
+    const url = `https://api.airtable.com/v0/appnbMRdyW6jkWQGB/Table`;
     try {
       const response = await fetch(url, {
         method: "GET",
